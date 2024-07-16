@@ -1,0 +1,104 @@
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  line-height: 1.5;
+  color: #121212;
+}
+textarea,
+input,
+button {
+  font-size: 1rem;
+  font-family: inherit;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  background-color: white;
+  line-height: 1.5;
+  margin: 0;
+}
+button {
+  font-weight: 500;
+}
+
+#root {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+#side-bar.stowed {
+  left: -250px;
+  padding-right: .5rem;
+}
+
+#side-bar {
+  left: 0;
+  position: fixed;
+  height: 100%;
+  transition-duration: .5s;
+}
+
+#side-bar__toggle {
+  position: absolute;
+  right: -0.75rem;
+  top: 1.25rem;
+  background-color: transparent;
+  color: white;
+  transition: cubic-bezier(0.25, 0.46, 0.6, 1.68);
+  transition-duration: .5s;
+}
+
+#side-bar.stowed #side-bar__toggle {
+  transform: rotate(180deg);
+}
+
+#page-box {
+  margin-left: 300px;
+  transition-duration: .5s;
+}
+
+#side-bar.stowed + #page-box {
+  margin-left: 50px;
+}
+
+#side-bar.stowed  #side-bar-button {
+  padding-right: .5rem;
+}
+
+#right-icon {
+  margin-left: auto;
+  opacity: 0;
+  transition-duration: 0s;
+}
+
+#side-bar.stowed  #right-icon {
+  opacity: 1;
+  transition-duration: .5s;
+}
+
+.rc-slider-handle {
+  pointer-events: none;
+}
