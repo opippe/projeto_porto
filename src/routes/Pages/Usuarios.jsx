@@ -12,11 +12,14 @@ import {
 } from "@chakra-ui/react";
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import GenericTable from '../../components/Layout/GenericTable/GenericTable';
+import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
 
 const Usuarios = () => {
 
     const tableHeaders = [
         {key: 'nome', label: 'nome', displayInTable: true, addModal: true, editModal: true, editable: true, inputType: 'text' },
+        {key: 'email', label: 'e-mail', displayInTable: true, addModal: true, editModal: true, editable: true, inputType: 'text' },
+        {key: 'setor', label: 'setor', displayInTable: true, addModal: true, editModal: true, editable: false, inputType: 'select', options: ['Administrativo', 'Operacional'] },
         {key: 'cargo', label: 'cargo', displayInTable: true, addModal: true, editModal: true, editable: false, inputType: 'select', options: ['Administrador', 'Supervisor', 'Operador'] },
         {key: 'dataAdicao', label: 'data de adição', displayInTable: true, addModal: true, editModal: true, editable: true, inputType: 'datetime-local' },
         {key: 'status', label: 'status', displayInTable: true, addModal: true, editModal: true, editable: false, inputType: 'select', options: ['Ativo', 'Inativo']}, 
@@ -26,21 +29,21 @@ const Usuarios = () => {
     ]
 
     const data = [
-        { nome: 'João Silva', cargo: 'Administrador', dataAdicao: '2024-06-20 06:00', status: 'Ativo', },
-        { nome: 'Maria Borges', cargo: 'Operador', dataAdicao: '2024-06-20 06:00', status: 'Ativo', },
-        { nome: 'Marcos Lopes', cargo: 'Operador', dataAdicao: '2024-06-20 06:00', status: 'Ativo', },
-        { nome: 'Sara Pontes', cargo: 'Supervisor', dataAdicao: '2024-06-20 06:00', status: 'Inativo', },
+        { nome: 'João Silva', email: 'joao.silva@emap.ma.gov.br', setor: 'Administrativo', cargo: 'Administrador', dataAdicao: '2024-06-20 06:00', status: 'Ativo', },
+        { nome: 'Maria Borges', email: 'maria.borges@emap.ma.gov.br', setor: 'Operacional', cargo: 'Operador', dataAdicao: '2024-06-20 06:00', status: 'Ativo', },
+        { nome: 'Marcos Lopes', email: 'marcos.lopes@emap.ma.gov.br', setor: 'Operacional', cargo: 'Operador', dataAdicao: '2024-06-20 06:00', status: 'Ativo', },
+        { nome: 'Sara Pontes', email: 'sara.pontes@emap.ma.gov.br', setor: 'Administrativo', cargo: 'Supervisor', dataAdicao: '2024-06-20 06:00', status: 'Inativo', },
     ];
 
     return (
         <>
             <Box p={4}>
-                <Box mb={4}>
-                    <Text fontSize="1.5rem" fontWeight="bold">Lista de Usuários</Text>
+                <Box mb={4} ml='5px'>
+                    <Text fontSize="1.5rem" fontWeight="bold" display='flex' alignItems='center'><PeopleRoundedIcon style={{ marginRight: '.5rem' }}/>Lista de Usuários</Text>
                 </Box>
                 <Box mb={4} display="flex" justifyContent="space-between">
                     <Tabs variant="line" width="100%">
-                        <Stack direction="row">
+                        <Stack direction="row" ml='5px'>
                             <TabList>
                                 <Tab 
                                     borderRadius="0" 
@@ -59,17 +62,20 @@ const Usuarios = () => {
                             </TabList>
                         </Stack>
                         <TabPanels>
-                            <TabPanel>
+                            <TabPanel p={0}>
                                 <GenericTable
                                     headers={tableHeaders}
                                     data={data}
                                     filterOptions={false}
                                     filterKey=""
                                     page='Usuário'
-                                    showButtons={true}
+                                    showButtons
+                                    showHeaderButton
+                                    showEditButton
+                                    showDeleteButton
                                 />
                             </TabPanel>
-                            <TabPanel>
+                            <TabPanel p={0}>
                                 {/* LOGS DO SISTEMA aqui */}
                             </TabPanel>
                         </TabPanels>

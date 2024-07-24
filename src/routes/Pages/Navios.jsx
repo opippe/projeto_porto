@@ -11,6 +11,7 @@ import {
     Text,
 } from "@chakra-ui/react";
 import GenericTable from '../../components/Layout/GenericTable/GenericTable';
+import SailingRoundedIcon from '@mui/icons-material/SailingRounded';
 
 const Navios = () => {
 
@@ -35,12 +36,12 @@ const Navios = () => {
     return (
         <>
             <Box p={4}>
-                <Box mb={4}>
-                    <Text fontSize="1.5rem" fontWeight="bold">Navios Atracados</Text>
+                <Box mb={4} ml='5px'>
+                    <Text fontSize="1.5rem" fontWeight="bold" display='flex' alignItems='center'><SailingRoundedIcon style={{ marginRight: '.5rem' }}/>Navios</Text>
                 </Box>
                 <Box mb={4} display="flex" justifyContent="space-between">
                     <Tabs variant="line" width="100%">
-                        <Stack direction="row">
+                        <Stack direction="row" ml='5px'>
                             <TabList>
                                 <Tab 
                                     borderRadius="0" 
@@ -59,7 +60,7 @@ const Navios = () => {
                             </TabList>
                         </Stack>
                         <TabPanels>
-                            <TabPanel>
+                            <TabPanel p={0}>
                                 <GenericTable
                                     headers={tableHeaders}
                                     data={data}
@@ -69,8 +70,8 @@ const Navios = () => {
                                     showButtons={false}
                                 />
                             </TabPanel>
-                            <TabPanel>
-                                {/* HISTÓRICO aqui */}
+                            <TabPanel p={0}>
+                                {/* INATIVOS aqui */}
                             </TabPanel>
                         </TabPanels>
                     </Tabs>

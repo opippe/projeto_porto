@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import GenericTable from '../../components/Layout/GenericTable/GenericTable';
+import HouseboatIcon from "@mui/icons-material/Houseboat";
 
 const Bercos = () => {
 
@@ -66,12 +67,12 @@ const Bercos = () => {
     return (
         <>
             <Box p={4}>
-                <Box mb={4}>
-                    <Text fontSize="1.5rem" fontWeight="bold">Berços</Text>
+                <Box mb={4} ml='5px'>
+                    <Text fontSize="1.5rem" fontWeight="bold" display='flex' alignItems='center'><HouseboatIcon style={{ marginRight: '.5rem' }}/>Berços</Text>
                 </Box>
                 <Box mb={4} display="flex" justifyContent="space-between">
                     <Tabs variant="line" width="100%">
-                        <Stack direction="row">
+                        <Stack direction="row" ml='5px'>
                             <TabList>
                                 <Tab 
                                     borderRadius="0" 
@@ -90,17 +91,20 @@ const Bercos = () => {
                             </TabList>
                         </Stack>
                         <TabPanels>
-                            <TabPanel>
+                            <TabPanel p={0}>
                                 <GenericTable
                                     headers={tableHeaders}
                                     data={data}
                                     filterOptions={false}
                                     filterKey=""
                                     page='Berço'
-                                    showButtons={true}
+                                    showButtons
+                                    showEditButton
+                                    showDeleteButton
+                                    showHeaderButton
                                 />
                             </TabPanel>
-                            <TabPanel>
+                            <TabPanel p={0}>
                                 {/* INATIVOS aqui */}
                             </TabPanel>
                         </TabPanels>

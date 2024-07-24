@@ -4,12 +4,13 @@ import logo from "../../../assets/logo.png";
 import { Box, Flex, Image, Stack, Button, calc } from "@chakra-ui/react";
 import AnchorRoundedIcon from "@mui/icons-material/AnchorRounded";
 import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
-import PostAddRoundedIcon from "@mui/icons-material/PostAddRounded";
+import SailingRoundedIcon from '@mui/icons-material/SailingRounded';
 import DirectionsBoatFilledRoundedIcon from "@mui/icons-material/DirectionsBoatFilledRounded";
 import HelpOutlineRoundedIcon from "@mui/icons-material/HelpOutlineRounded";
 import LogoutIcon from "@mui/icons-material/Logout";
 import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
 import HouseboatIcon from "@mui/icons-material/Houseboat";
+import PendingActionsIcon from '@mui/icons-material/PendingActions';
 import SideBarButton from "./SideBarButton";
 
 function SideBar(props) {
@@ -92,7 +93,7 @@ function SideBar(props) {
             >
               <SideBarButton
                 text="Requisições"
-                icon={<PostAddRoundedIcon />}
+                icon={<PendingActionsIcon />}
                 uiOpen={props.uiOpen}
                 number={5}
                 isSelected={isSelected}
@@ -122,7 +123,7 @@ function SideBar(props) {
             >
               <SideBarButton
                 text="Navios"
-                icon={<DirectionsBoatFilledRoundedIcon />}
+                icon={<SailingRoundedIcon />}
                 uiOpen={props.uiOpen}
                 number={6}
                 isSelected={isSelected}

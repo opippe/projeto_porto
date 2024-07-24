@@ -38,8 +38,10 @@ import SearchIcon from '@mui/icons-material/Search';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
+import IosShareIcon from '@mui/icons-material/IosShare';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 
-const GenericTable = ({ page, headers, data: initialData, filterOptions, filterKey, filterText, showButtons }) => {
+const GenericTable = ({ page, headers, data: initialData, filterOptions, filterKey, filterText, showButtons, showEditButton, showDeleteButton, showExportButton, showViewButton, showHeaderButton }) => {
     const [zoom, setZoom] = useState(0.8);
     const [sortConfig, setSortConfig] = useState({ key: '', direction: '' });
     const [filterValue, setFilterValue] = useState('');
@@ -51,6 +53,7 @@ const GenericTable = ({ page, headers, data: initialData, filterOptions, filterK
     const { isOpen: isAddOpen, onOpen: onAddOpen, onClose: onAddClose } = useDisclosure();
     const { isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose } = useDisclosure();
     const { isOpen: isDeleteOpen, onOpen: onDeleteOpen, onClose: onDeleteClose } = useDisclosure();
+    const { isOpen: isViewOpen, onOpen: onViewOpen, onClose: onViewClose } = useDisclosure();
     const [deleteIndex, setDeleteIndex] = useState(null);
 
     const [isAddValid, setIsAddValid] = useState(false);
@@ -222,7 +225,7 @@ const GenericTable = ({ page, headers, data: initialData, filterOptions, filterK
                     <InputLeftElement>
                         <SearchIcon sx={{ color: 'gray' }} />
                     </InputLeftElement>
-                    <Input type='search' value={searchValue} onChange={(e) => setSearchValue(e.target.value)} placeholder="Pesquisar..." />
+                    <Input type='search' value={searchValue} onChange={(e) => setSearchValue(e.target.value)} placeholder="Pesquisar..." bg='white' mr='5px' />
                 </InputGroup>
 
                 {/* FILTRAR SELECT */}
@@ -268,7 +271,7 @@ const GenericTable = ({ page, headers, data: initialData, filterOptions, filterK
                 </Box>
             </Box>
 
-            {showButtons && <Button
+            {showHeaderButton && <Button
                 position="fixed"
                 colorScheme="blue"
                 h="2rem"
@@ -281,8 +284,9 @@ const GenericTable = ({ page, headers, data: initialData, filterOptions, filterK
             </Button>}
 
             {/* MAIN TABLE */}
-            <Box transform={`scale(${zoom})`} transformOrigin="top left" key={zoom} mt={3}>
-                <Table variant="striped" size='md' colorScheme='gray' w='125%'>
+            <Box transform={`scale(${zoom})`} transformOrigin="top left" key={zoom} mt={3} p='5px'>
+                <Box id='table-container' w='125%' borderRadius='10px' overflow='hidden' boxShadow='0px 1px 3px 0px rgba(0, 0, 0, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.06)'>
+                <Table variant="striped" size='md' colorScheme='gray' w='100%' bg='white' borderRadius='10px'>
                     <Thead>
                         <Tr>
                             {headers.map((header) => (
@@ -324,19 +328,32 @@ const GenericTable = ({ page, headers, data: initialData, filterOptions, filterK
                                     )
                                 ))}
                                 {showButtons && <Td padding={0}>
-                                    <IconButton size="sm" colorScheme='blue' icon={<EditIcon />} ml={2} onClick={() => {
+
+                                    {showEditButton && <IconButton size="sm" colorScheme='blue' icon={<EditIcon />} ml={2} onClick={() => {
                                         setEditingRow({ index: rowIndex, row });
                                         onEditOpen();
-                                    }}>Edit</IconButton>
-                                    <IconButton size="sm" colorScheme="red" icon={<DeleteIcon />} ml={2} onClick={() => {
+                                    }}>Edit</IconButton>}
+
+                                    { showDeleteButton && <IconButton size="sm" colorScheme="red" icon={<DeleteIcon />} ml={2} onClick={() => {
                                         setDeleteIndex(rowIndex);
                                         onDeleteOpen();
-                                    }}>Delete</IconButton>
+                                    }}>Delete</IconButton>}
+                                    
+                                    { showViewButton && <IconButton size="sm" colorScheme="blue" icon={<VisibilityIcon />} ml={2} onClick={() => {
+                                        setEditingRow({ index: rowIndex, row });
+                                        onViewOpen();
+                                    }}>View</IconButton>}
+
+                                    { showExportButton && <IconButton size="sm" colorScheme="blue" variant='outline' icon={<IosShareIcon />} ml={2} onClick={() => {
+                                        console.log('exportar')
+                                    }}>Export</IconButton>}
+
                                 </Td>}
                             </Tr>
                         ))}
                     </Tbody>
                 </Table>
+                </Box>
             </Box>
 
             {/* Modal Adicionar */}
@@ -413,6 +430,33 @@ const GenericTable = ({ page, headers, data: initialData, filterOptions, filterK
                     </AlertDialogContent>
                 </AlertDialogOverlay>
             </AlertDialog>
+
+            {/* Modal Visualizar e Adicionar ao Line-up */}
+            <Modal isOpen={isViewOpen} onClose={onViewClose} size='2xl'>
+                <ModalOverlay />
+                <ModalContent w='700px' maxW='100%'>
+                    <ModalHeader>Requisição</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody display='flex' flexWrap='wrap' justifyContent='flex-start' >
+                        {headers.map((header) => (
+                            header.editModal && (
+                                <FormControl key={header.key} mb={2} isRequired width='50%' marginBottom={5} pl={2} pr={2}>
+                                    <FormLabel>{header.label.toUpperCase()}</FormLabel>
+                                    {renderInput(header, editingRow?.row[header.key] || initializeFormData()[header.key], (e) => setEditingRow({
+                                        ...editingRow,
+                                        row: { ...editingRow.row, [header.key]: e.target.value }
+                                    }))}
+                                </FormControl>
+                            )
+                        ))}
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button colorScheme="blue" onClick={handleEditRow} isDisabled={!isEditValid}>Salvar</Button>
+                        <Button variant='outline' colorScheme='red' ml={2} onClick={onViewClose}>Cancelar</Button>
+                    </ModalFooter>
+                </ModalContent>
+            </Modal>
+
         </Box>
     );
 };

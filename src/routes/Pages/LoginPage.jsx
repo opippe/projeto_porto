@@ -38,8 +38,7 @@ const LoginPage = () => {
     //   .catch((error) => {
     //     alert(error.message);
     //   });
-      
-      navigate("/atraqui");
+    navigate("/atraqui");
   };
 
   return (

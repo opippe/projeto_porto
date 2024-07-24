@@ -11,6 +11,7 @@ import {
     Text,
 } from "@chakra-ui/react";
 import GenericTable from '../../components/Layout/GenericTable/GenericTable';
+import AnchorRoundedIcon from "@mui/icons-material/AnchorRounded";
 
 const NaviosAtracados = () => {
 
@@ -40,12 +41,12 @@ const NaviosAtracados = () => {
     return (
         <>
             <Box p={4}>
-                <Box mb={4}>
-                    <Text fontSize="1.5rem" fontWeight="bold">Navios Atracados</Text>
+                <Box mb={4} ml='5px'>
+                    <Text fontSize="1.5rem" fontWeight="bold" display='flex' alignItems='center'><AnchorRoundedIcon style={{ marginRight: '.5rem' }}/> Navios Atracados</Text>
                 </Box>
                 <Box mb={4} display="flex" justifyContent="space-between">
                     <Tabs variant="line" width="100%">
-                        <Stack direction="row">
+                        <Stack direction="row" ml='5px'>
                             <TabList>
                                 <Tab 
                                     borderRadius="0" 
@@ -54,17 +55,10 @@ const NaviosAtracados = () => {
                                         shadow: "none",
                                     }}
                                 >Tabela</Tab>
-                                <Tab 
-                                    borderRadius="0" 
-                                    shadow="none"
-                                    _hover={{
-                                        shadow: "none",
-                                    }}
-                                >Histórico</Tab>
                             </TabList>
                         </Stack>
                         <TabPanels>
-                            <TabPanel>
+                            <TabPanel p={0}>
                                 <GenericTable
                                     headers={tableHeaders}
                                     data={data}
@@ -73,9 +67,6 @@ const NaviosAtracados = () => {
                                     filterText='Berço'
                                     showButtons={false}
                                 />
-                            </TabPanel>
-                            <TabPanel>
-                                {/* HISTÓRICO aqui */}
                             </TabPanel>
                         </TabPanels>
                     </Tabs>

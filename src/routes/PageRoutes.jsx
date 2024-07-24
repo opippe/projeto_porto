@@ -19,7 +19,7 @@ export default function PageRoutes() {
     <>
       <TopBar selectedPage={selectedPage} />
       <SideBar setSelectedPage={setSelectedPage} />
-      <Box id="page-box" m="5rem 0 1.5rem 0" w="100%" overflow="auto">
+      <Box id="page-box" m="5rem 0 1.5rem 0" w="100%" overflow="auto" bg='#EFEDF8' p={4}>
         {selectedPage === "Line-Up" && <HomePage />}
         {selectedPage === "Navios Atracados" && <NaviosAtracados />}
         {selectedPage === "Requisições" && <Requisicoes />}
