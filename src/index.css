@@ -63,16 +63,18 @@ button {
 
 #side-bar__toggle {
   position: absolute;
-  right: -0.75rem;
+  right: -3rem;
   top: 1.25rem;
   background-color: transparent;
   color: white;
   transition: cubic-bezier(0.25, 0.46, 0.6, 1.68);
   transition-duration: .5s;
+  transform: rotate(180deg);
 }
 
 #side-bar.stowed #side-bar__toggle {
-  transform: rotate(180deg);
+  /* transform: rotate(180deg); */
+  display: flex;
 }
 
 #page-box {
@@ -82,6 +84,15 @@ button {
 
 #side-bar.stowed + #page-box {
   margin-left: 50px;
+}
+
+#footer {
+  padding-left: 300px;
+  transition-duration: .5s;
+}
+
+#side-bar.stowed ~ #footer {
+  padding-left: 50px;
 }
 
 #side-bar.stowed  #side-bar-button {
@@ -101,4 +112,12 @@ button {
 
 .rc-slider-handle {
   pointer-events: none;
+}
+
+#page-container {
+  height: calc(100% - 65px);
+}
+
+#page-inside {
+  height: 100%;
 }

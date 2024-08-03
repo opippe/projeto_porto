@@ -40,11 +40,11 @@ const NaviosAtracados = () => {
 
     return (
         <>
-            <Box p={4}>
+            <Box p={4} id='page-container'>
                 <Box mb={4} ml='5px'>
                     <Text fontSize="1.5rem" fontWeight="bold" display='flex' alignItems='center'><AnchorRoundedIcon style={{ marginRight: '.5rem' }}/> Navios Atracados</Text>
                 </Box>
-                <Box mb={4} display="flex" justifyContent="space-between">
+                <Box mb={4} display="flex" justifyContent="space-between" height='100%'>
                     <Tabs variant="line" width="100%">
                         <Stack direction="row" ml='5px'>
                             <TabList>
@@ -57,8 +57,8 @@ const NaviosAtracados = () => {
                                 >Tabela</Tab>
                             </TabList>
                         </Stack>
-                        <TabPanels>
-                            <TabPanel p={0}>
+                        <TabPanels height='100%'>
+                            <TabPanel p={0} height='100%'>
                                 <GenericTable
                                     headers={tableHeaders}
                                     data={data}

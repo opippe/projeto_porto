@@ -12,6 +12,7 @@ import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
 import HouseboatIcon from "@mui/icons-material/Houseboat";
 import PendingActionsIcon from '@mui/icons-material/PendingActions';
 import SideBarButton from "./SideBarButton";
+import { ViewSidebarOutlined } from "@mui/icons-material";
 
 function SideBar(props) {
   // Estado para controlar se a barra lateral está escondida ou não
@@ -42,7 +43,10 @@ function SideBar(props) {
 
   return (
     <Box bg="#2D3748" w="300px" p="0 1rem" zIndex="1" id="side-bar" className={isStowed ? '' : 'stowed'}>
-      <Button onClick={stowBar} id="side-bar__toggle" type="button" title="ABRIR/FECHAR BARRA LATERAL"><ChevronLeftRoundedIcon id="chevron-left" sx={{ fontSize: 44, fontWeight: 'bold' }} /></Button>
+      <Button onClick={stowBar} id="side-bar__toggle" type="button" title="ABRIR/FECHAR BARRA LATERAL">
+        <ViewSidebarOutlined />
+        {/* <ChevronLeftRoundedIcon id="chevron-left" sx={{ fontSize: 44, fontWeight: 'bold' }} /> */}
+      </Button>
       <Flex mb="1rem">
         <Image
           src={logo}

@@ -34,50 +34,48 @@ const Navios = () => {
     const filterOptions = [99, 100, 101, 102];
 
     return (
-        <>
-            <Box p={4}>
-                <Box mb={4} ml='5px'>
-                    <Text fontSize="1.5rem" fontWeight="bold" display='flex' alignItems='center'><SailingRoundedIcon style={{ marginRight: '.5rem' }}/>Navios</Text>
-                </Box>
-                <Box mb={4} display="flex" justifyContent="space-between">
-                    <Tabs variant="line" width="100%">
-                        <Stack direction="row" ml='5px'>
-                            <TabList>
-                                <Tab 
-                                    borderRadius="0" 
-                                    shadow="none"
-                                    _hover={{
-                                        shadow: "none",
-                                    }}
-                                >Ativos</Tab>
-                                <Tab 
-                                    borderRadius="0" 
-                                    shadow="none"
-                                    _hover={{
-                                        shadow: "none",
-                                    }}
-                                >Inativos</Tab>
-                            </TabList>
-                        </Stack>
-                        <TabPanels>
-                            <TabPanel p={0}>
-                                <GenericTable
-                                    headers={tableHeaders}
-                                    data={data}
-                                    filterOptions={filterOptions}
-                                    filterKey='berco'
-                                    filterText='Berço'
-                                    showButtons={false}
-                                />
-                            </TabPanel>
-                            <TabPanel p={0}>
-                                {/* INATIVOS aqui */}
-                            </TabPanel>
-                        </TabPanels>
-                    </Tabs>
-                </Box>
+        <Box p={4} id='page-container'>
+            <Box mb={4} ml='5px'>
+                <Text fontSize="1.5rem" fontWeight="bold" display='flex' alignItems='center'><SailingRoundedIcon style={{ marginRight: '.5rem' }}/>Navios</Text>
             </Box>
-        </>
+            <Box mb={4} display="flex" justifyContent="space-between" height='100%'>
+                <Tabs variant="line" width="100%" height='100%'>
+                    <Stack direction="row" ml='5px'>
+                        <TabList>
+                            <Tab 
+                                borderRadius="0" 
+                                shadow="none"
+                                _hover={{
+                                    shadow: "none",
+                                }}
+                            >Ativos</Tab>
+                            <Tab 
+                                borderRadius="0" 
+                                shadow="none"
+                                _hover={{
+                                    shadow: "none",
+                                }}
+                            >Inativos</Tab>
+                        </TabList>
+                    </Stack>
+                    <TabPanels>
+                        <TabPanel p={0} height='100%'>
+                            <GenericTable
+                                headers={tableHeaders}
+                                data={data}
+                                filterOptions={filterOptions}
+                                filterKey='berco'
+                                filterText='Berço'
+                                showButtons={false}
+                            />
+                        </TabPanel>
+                        <TabPanel p={0} height='100%'>
+                            {/* INATIVOS aqui */}
+                        </TabPanel>
+                    </TabPanels>
+                </Tabs>
+            </Box>
+        </Box>
     );
 };
 

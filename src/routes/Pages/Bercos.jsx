@@ -65,53 +65,51 @@ const Bercos = () => {
     ];    
 
     return (
-        <>
-            <Box p={4}>
-                <Box mb={4} ml='5px'>
-                    <Text fontSize="1.5rem" fontWeight="bold" display='flex' alignItems='center'><HouseboatIcon style={{ marginRight: '.5rem' }}/>Berços</Text>
-                </Box>
-                <Box mb={4} display="flex" justifyContent="space-between">
-                    <Tabs variant="line" width="100%">
-                        <Stack direction="row" ml='5px'>
-                            <TabList>
-                                <Tab 
-                                    borderRadius="0" 
-                                    shadow="none"
-                                    _hover={{
-                                        shadow: "none",
-                                    }}
-                                >Ativos</Tab>
-                                <Tab 
-                                    borderRadius="0" 
-                                    shadow="none"
-                                    _hover={{
-                                        shadow: "none",
-                                    }}
-                                >Inativos</Tab>
-                            </TabList>
-                        </Stack>
-                        <TabPanels>
-                            <TabPanel p={0}>
-                                <GenericTable
-                                    headers={tableHeaders}
-                                    data={data}
-                                    filterOptions={false}
-                                    filterKey=""
-                                    page='Berço'
-                                    showButtons
-                                    showEditButton
-                                    showDeleteButton
-                                    showHeaderButton
-                                />
-                            </TabPanel>
-                            <TabPanel p={0}>
-                                {/* INATIVOS aqui */}
-                            </TabPanel>
-                        </TabPanels>
-                    </Tabs>
-                </Box>
+        <Box p={4} id='page-container'>
+            <Box mb={4} ml='5px'>
+                <Text fontSize="1.5rem" fontWeight="bold" display='flex' alignItems='center'><HouseboatIcon style={{ marginRight: '.5rem' }}/>Berços</Text>
             </Box>
-        </>
+            <Box mb={4} display="flex" justifyContent="space-between" height='100%'>
+                <Tabs variant="line" width="100%" height='100%'>
+                    <Stack direction="row" ml='5px'>
+                        <TabList>
+                            <Tab 
+                                borderRadius="0" 
+                                shadow="none"
+                                _hover={{
+                                    shadow: "none",
+                                }}
+                            >Ativos</Tab>
+                            <Tab 
+                                borderRadius="0" 
+                                shadow="none"
+                                _hover={{
+                                    shadow: "none",
+                                }}
+                            >Inativos</Tab>
+                        </TabList>
+                    </Stack>
+                    <TabPanels height='100%'>
+                        <TabPanel p={0} height='100%'>
+                            <GenericTable
+                                headers={tableHeaders}
+                                data={data}
+                                filterOptions={false}
+                                filterKey=""
+                                page='Berço'
+                                showButtons
+                                showEditButton
+                                showDeleteButton
+                                showHeaderButton
+                            />
+                        </TabPanel>
+                        <TabPanel p={0} height='100%'>
+                            {/* INATIVOS aqui */}
+                        </TabPanel>
+                    </TabPanels>
+                </Tabs>
+            </Box>
+        </Box>
     );
 };
 

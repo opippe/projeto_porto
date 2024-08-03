@@ -12,6 +12,7 @@ import Bercos from "./Pages/Bercos";
 import NaviosAtracados from "./Pages/NaviosAtracados";
 import Requisicoes from "./Pages/Requisicoes";
 import Navios from "./Pages/Navios";
+import LineUp from "./Pages/LineUp";
 
 export default function PageRoutes() {
   const [selectedPage, setSelectedPage] = useState("Line-Up");
@@ -19,13 +20,13 @@ export default function PageRoutes() {
     <>
       <TopBar selectedPage={selectedPage} />
       <SideBar setSelectedPage={setSelectedPage} />
-      <Box id="page-box" m="5rem 0 1.5rem 0" w="100%" overflow="auto" bg='#EFEDF8' p={4}>
-        {selectedPage === "Line-Up" && <HomePage />}
+      <Box id="page-box" m="5rem 0 40px 0" w="100%" overflow="auto" bg='#EFEDF8' p={4}>
+        {selectedPage === "Line-Up" && <LineUp />}
         {selectedPage === "Navios Atracados" && <NaviosAtracados />}
         {selectedPage === "Requisições" && <Requisicoes />}
         {selectedPage === "Usuários" && <Usuarios />}
-        {selectedPage === "Navios" && <h1><Navios /></h1>}
-        {selectedPage === "Berços" && <h1><Bercos /></h1>}
+        {selectedPage === "Navios" && <Navios />}
+        {selectedPage === "Berços" && <Bercos />}
         {selectedPage === "Ajuda" && <h1>AJUDA</h1>}
       </Box>
       <Footer />
