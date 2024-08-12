@@ -62,18 +62,18 @@ button {
 }
 
 #side-bar__toggle {
-  position: absolute;
-  right: -3rem;
-  top: 1.25rem;
   background-color: transparent;
   color: white;
   transition: cubic-bezier(0.25, 0.46, 0.6, 1.68);
   transition-duration: .5s;
-  transform: rotate(180deg);
+  margin-bottom: 1rem;
+  position: absolute;
+  top: 1.5rem;
+  right: -0.75rem;
 }
 
 #side-bar.stowed #side-bar__toggle {
-  /* transform: rotate(180deg); */
+  transform: rotate(180deg);
   display: flex;
 }
 

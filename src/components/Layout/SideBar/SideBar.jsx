@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../../assets/logo.png";
+import iconlogo from "../../../assets/logo3.png"
 import { Box, Flex, Image, Stack, Button, calc } from "@chakra-ui/react";
 import AnchorRoundedIcon from "@mui/icons-material/AnchorRounded";
 import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
@@ -43,11 +44,7 @@ function SideBar(props) {
 
   return (
     <Box bg="#2D3748" w="300px" p="0 1rem" zIndex="1" id="side-bar" className={isStowed ? '' : 'stowed'}>
-      <Button onClick={stowBar} id="side-bar__toggle" type="button" title="ABRIR/FECHAR BARRA LATERAL">
-        <ViewSidebarOutlined />
-        {/* <ChevronLeftRoundedIcon id="chevron-left" sx={{ fontSize: 44, fontWeight: 'bold' }} /> */}
-      </Button>
-      <Flex mb="1rem">
+      <Flex mb="1rem" alignItems='center'>
         <Image
           src={logo}
           alt=""
@@ -55,6 +52,16 @@ function SideBar(props) {
           m="auto"
           filter="brightness(0) invert(1)"
         />
+        {/* <Image
+          src={iconlogo}
+          alt=""
+          maxHeight='30px'
+        /> */}
+        <Button onClick={stowBar} id="side-bar__toggle" type="button" title="ABRIR/FECHAR BARRA LATERAL">
+          {/* <ViewSidebarOutlined /> */}
+          <ChevronLeftRoundedIcon id="chevron-left" sx={{ fontSize: 44, fontWeight: 'bold' }} />
+        </Button>
+
       </Flex>
       <Flex height='calc(100% - 140px)' direction="column" justifyContent='space-between'>
           <Stack h={'100%'}>
@@ -124,6 +131,7 @@ function SideBar(props) {
                 props.setSelectedPage("Navios");
                 selected(6);
               }}
+              style={{ opacity: '.5', pointerEvents: 'none' }} //TEMPORARIAMENTE DESABILITADO
             >
               <SideBarButton
                 text="Navios"
@@ -139,6 +147,7 @@ function SideBar(props) {
                 props.setSelectedPage("Berços");
                 selected(3);
               }}
+              style={{ opacity: '.5', pointerEvents: 'none' }} //TEMPORARIAMENTE DESABILITADO
             >
               <SideBarButton
                 text="Berços"
@@ -154,6 +163,7 @@ function SideBar(props) {
                 props.setSelectedPage("Ajuda");
                 selected(7);
               }}
+              style={{ opacity: '.5', pointerEvents: 'none' }} //TEMPORARIAMENTE DESABILITADO
             >
               <SideBarButton
                 text="Ajuda"

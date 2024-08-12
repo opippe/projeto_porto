@@ -69,8 +69,8 @@ const LineUp = () => {
                                     filterKey=""
                                     page='Navio'
                                     showButtons
-                                    showHeaderButton
-                                    showEditButton
+                                    showHeaderButton='lineup'
+                                    showEditButton='lineup'
                                     showDeleteButton
                                     hideZoomSlider
                                 />
@@ -82,8 +82,7 @@ const LineUp = () => {
                                     filterKey=""
                                     page='Navio'
                                     showButtons
-                                    showHeaderButton
-                                    showEditButton
+                                    showEditButton='lineup'
                                     showDeleteButton
                                     hideZoomSlider
                                 />
@@ -96,8 +95,7 @@ const LineUp = () => {
                                     filterKey=""
                                     page='Navio'
                                     showButtons
-                                    showHeaderButton
-                                    showEditButton
+                                    showEditButton='lineup'
                                     showDeleteButton
                                 />
                             </TabPanel>
