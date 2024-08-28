@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 
 import { Box } from "@chakra-ui/react";
@@ -20,7 +21,13 @@ export default function PageRoutes() {
     <>
       <TopBar selectedPage={selectedPage} />
       <SideBar setSelectedPage={setSelectedPage} />
-      <Box id="page-box" m="5rem 0 40px 0" w="100%" overflow="auto" bg='#EFEDF8' p={4}>
+      <Box
+        id="page-box"
+        m="5rem 0 40px 0"
+        w="100%"
+        overflow="auto"
+        bg="#EFEDF8"
+        p={4}>
         {selectedPage === "Line-Up" && <LineUp />}
         {selectedPage === "Navios Atracados" && <NaviosAtracados />}
         {selectedPage === "Requisições" && <Requisicoes />}

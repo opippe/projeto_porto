@@ -17,6 +17,9 @@ import {
     Stack,
     Checkbox,
     Flex,
+    Text,
+    Tag,         // Import Tag and TagLabel
+    TagLabel,
 } from '@chakra-ui/react';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
@@ -31,8 +34,24 @@ import EditModal from './EditModal';
 import DeleteConfirmationModal from './DeleteConfirmationModal';
 import RestoreConfirmationModal from './RestoreConfirmationModal';
 import ViewModal from './ViewModal';
-import InactivateUserModal from './InactivateUserModal';  // Import the new InactivateUserModal
+import InactivateUserModal from './InactivateUserModal';
 import { formatDate } from './utils';
+import StarIcon from '@mui/icons-material/Star';
+import CachedIcon from '@mui/icons-material/Cached';
+
+// Function to get tag styles based on "situacao" value
+const getTagStyle = (situacao) => {
+    switch (situacao) {
+        case 'Atracado':
+            return { bgColor: '#C6F6D5', color: '#22543D' };
+        case 'Fundeado':
+            return { bgColor: '#BEE3F8', color: '#2A4365' };
+        case 'Esperado':
+            return { bgColor: '#FEEBCB', color: '#7B341E' };
+        default:
+            return { bgColor: 'gray.200', color: 'black' };
+    }
+};
 
 const GenericTable = ({ page, headers, data: initialData, filterOptions, filterKey, filterText, showButtons, showEditButton, showDeleteButton, showExportButton, showViewButton, showHeaderButton, hideZoomSlider }) => {
     const [zoom, setZoom] = useState(0.8);
@@ -173,9 +192,7 @@ const GenericTable = ({ page, headers, data: initialData, filterOptions, filterK
 
     return (
         <Box width='100%' overflowX='auto' height='85%'>
-            {/*TOP MENU STACK*/}
             <Stack direction="row-reverse" position='absolute' top='0' right='0'>
-                {/*PESQUISAR INPUT*/}
                 <InputGroup width={250}>
                     <InputLeftElement>
                         <SearchIcon sx={{ color: 'gray' }} />
@@ -183,7 +200,6 @@ const GenericTable = ({ page, headers, data: initialData, filterOptions, filterK
                     <Input type='search' value={searchValue} onChange={(e) => setSearchValue(e.target.value)} placeholder="Pesquisar..." bg='white' mr='5px' />
                 </InputGroup>
 
-                {/* FILTRAR SELECT */}
                 {filterOptions && (
                     <Select
                         placeholder={filterText}
@@ -210,7 +226,6 @@ const GenericTable = ({ page, headers, data: initialData, filterOptions, filterK
                 </Button>
             </Stack>
 
-            {/* ZOOM SLIDER */}
             {!hideZoomSlider && <Box position='absolute' bottom='0' width='200px' display='flex' alignItems='center'>
             <Slider
                     min={0.5}
@@ -238,7 +253,6 @@ const GenericTable = ({ page, headers, data: initialData, filterOptions, filterK
                 Registrar {page} +
             </Button>}
 
-            {/* TABELA */}
             <Box transform={`scale(${zoom})`} transformOrigin="top left" key={zoom} mt={3} p='5px'>
                 <Box id='table-container' w='125%' borderRadius='10px' overflow='hidden' boxShadow='0px 1px 3px 0px rgba(0, 0, 0, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.06)'>
                 <Table variant="striped" size='md' colorScheme='gray' w='100%' bg='white' borderRadius='10px'>
@@ -266,19 +280,39 @@ const GenericTable = ({ page, headers, data: initialData, filterOptions, filterK
                                 {headers.map((header) => (
                                     header.displayInTable && (
                                         <Td key={header.key}>
-                                            {header.inputType === 'datetime-local' ? formatDate(row[header.key]) : (header.inputType === 'checkbox' ? (
-                                                <Stack spacing={1}>
-                                                    {header.options.map(option => (
-                                                        <Checkbox
-                                                            key={option}
-                                                            isChecked={row[header.key].includes(option)}
-                                                            isReadOnly
-                                                        >
-                                                            {option}
-                                                        </Checkbox>
-                                                    ))}
-                                                </Stack>
-                                            ) : row[header.key])}
+                                            {header.key === 'situacao' ? (
+                                                <Tag bgColor={getTagStyle(row.situacao).bgColor} color={getTagStyle(row.situacao).color}>
+                                                    <TagLabel>{row.situacao}</TagLabel>
+                                                </Tag>
+                                            ) : (
+                                                header.inputType === 'datetime-local' ? (
+                                                    formatDate(row[header.key])
+                                                ) : (
+                                                    header.inputType === 'checkbox' ? (
+                                                        <Stack spacing={1}>
+                                                            {header.options.map(option => (
+                                                                <Checkbox
+                                                                    key={option}
+                                                                    isChecked={row[header.key].includes(option)}
+                                                                    isReadOnly
+                                                                >
+                                                                    {option}
+                                                                </Checkbox>
+                                                            ))}
+                                                        </Stack>
+                                                    ) : (
+                                                        <Flex alignItems="center">
+                                                            {row[header.key]}
+                                                            {header.key === 'navio' && (
+                                                                <>
+                                                                    {row.preferencia && <Text color="#D69E2E" fontWeight="bold" ml={2}><StarIcon /></Text>}
+                                                                    {row.transbordo && <span title={`Em transbordo com `}><Text color="#3182CE" fontWeight="bold" ml={2}><CachedIcon /></Text></span>}
+                                                                </>
+                                                            )}
+                                                        </Flex>
+                                                    )
+                                                )
+                                            )}
                                         </Td>
                                     )
                                 ))}
@@ -312,7 +346,6 @@ const GenericTable = ({ page, headers, data: initialData, filterOptions, filterK
                 </Box>
             </Box>
 
-            {/* Modal Adicionar / Registrar */}
             <AddModal
                 isAddOpen={isAddOpen}
                 onAddClose={onAddClose}
@@ -324,7 +357,6 @@ const GenericTable = ({ page, headers, data: initialData, filterOptions, filterK
                 page={page}
             />
 
-            {/* Modal Editar */}
             <EditModal
                 isEditOpen={isEditOpen}
                 onEditClose={onEditClose}
@@ -335,21 +367,18 @@ const GenericTable = ({ page, headers, data: initialData, filterOptions, filterK
                 isEditValid={isEditValid}
             />
 
-            {/* AlertDialog Confirmação Deletar */}
             <DeleteConfirmationModal
                 isDeleteOpen={isDeleteOpen}
                 onDeleteClose={onDeleteClose}
                 handleDeleteRow={handleDeleteRow}
             />
 
-            {/* AlertDialog Confirmação Restaurar */}
             <RestoreConfirmationModal
                 isRestoreOpen={isRestoreOpen}
                 onRestoreClose={onRestoreClose}
                 handleRestoreRequest={handleRestoreRequest}
             />
 
-            {/* Modal Visualizar e Adicionar ao Line-up */}
             <ViewModal
                 isViewOpen={isViewOpen}
                 onViewClose={onViewClose}
@@ -358,7 +387,6 @@ const GenericTable = ({ page, headers, data: initialData, filterOptions, filterK
                 onRestoreOpen={onRestoreOpen}
             />
 
-            {/* Modal Inativar Usuário */}
             <InactivateUserModal
                 isInactivateOpen={isInactivateOpen}
                 onInactivateClose={onInactivateClose}
