@@ -37,6 +37,7 @@ const NaviosAtracados = () => {
     ];
 
     const filterOptions = [99, 100, 101];
+    const uniqueBercoValues = [...new Set(data.map(item => item.berco))];
 
     return (
         <>
@@ -55,6 +56,13 @@ const NaviosAtracados = () => {
                                         shadow: "none",
                                     }}
                                 >Tabela</Tab>
+                                <Tab 
+                                    borderRadius="0" 
+                                    shadow="none"
+                                    _hover={{
+                                        shadow: "none",
+                                    }}
+                                >Histórico</Tab>
                             </TabList>
                         </Stack>
                         <TabPanels height='100%'>
@@ -67,6 +75,27 @@ const NaviosAtracados = () => {
                                     filterText='Berço'
                                     showButtons={false}
                                 />
+                            </TabPanel>
+                            <TabPanel p={0}>
+                                {uniqueBercoValues.map(berco => (
+                                    <React.Fragment key={berco}>
+                                        <Button ml={1.5} mt={4} pointerEvents='none' colorScheme='blue'>
+                                            Berço {berco}
+                                        </Button>
+                                        <GenericTable
+                                            headers={tableHeaders}
+                                            data={data.filter(item => item.berco === berco)}
+                                            filterOptions={false}
+                                            filterKey=""
+                                            page='Navio'
+                                            showButtons
+                                            showHeaderButton='lineup'
+                                            showEditButton='lineup'
+                                            showDeleteButton
+                                            hideZoomSlider
+                                        />
+                                    </React.Fragment>
+                                ))}
                             </TabPanel>
                         </TabPanels>
                     </Tabs>

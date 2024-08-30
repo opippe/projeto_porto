@@ -20,7 +20,7 @@ import {
 import { AdminPanelSettingsOutlined, DirectionsBoatFilledRounded, HistoryOutlined } from '@mui/icons-material';
 import EditIcon from '@mui/icons-material/Edit';
 
-const EditModal = ({ isEditOpen, onEditClose, headers, editingRow, setEditingRow, handleEditRow, isEditValid }) => {
+const EditModal = ({ isEditOpen, onEditClose, headers, editingRow, setEditingRow, handleEditRow, isEditValid, source }) => {
 
     const renderInput = (header, value, onChange) => {
         if (header.inputType === 'select') {
@@ -114,7 +114,7 @@ const EditModal = ({ isEditOpen, onEditClose, headers, editingRow, setEditingRow
                         )
                     ))}
                 </ModalBody>
-                <Button ml={6} mr={6} variant='outline' colorScheme='blue'>Redefinir Senha</Button>
+                {source === 'usuarios' && <Button ml={6} mr={6} variant='outline' colorScheme='blue'>Redefinir Senha</Button>}
                 <ModalFooter>
                     <Button colorScheme="blue" onClick={handleEditRow} isDisabled={!isEditValid}>Salvar</Button>
                     <Button variant='outline' colorScheme='red' ml={2} onClick={onEditClose}>Cancelar</Button>

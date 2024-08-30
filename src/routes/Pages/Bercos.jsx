@@ -80,13 +80,6 @@ const Bercos = () => {
                                     shadow: "none",
                                 }}
                             >Ativos</Tab>
-                            <Tab 
-                                borderRadius="0" 
-                                shadow="none"
-                                _hover={{
-                                    shadow: "none",
-                                }}
-                            >Inativos</Tab>
                         </TabList>
                     </Stack>
                     <TabPanels height='100%'>
@@ -102,9 +95,6 @@ const Bercos = () => {
                                 showDeleteButton
                                 showHeaderButton
                             />
-                        </TabPanel>
-                        <TabPanel p={0} height='100%'>
-                            {/* INATIVOS aqui */}
                         </TabPanel>
                     </TabPanels>
                 </Tabs>

@@ -184,7 +184,7 @@ const Usuarios = () => {
                   page="Usuário"
                   showButtons
                   showHeaderButton
-                  showEditButton
+                  showEditButton='usuarios'
                   showDeleteButton
                 />
               </TabPanel>
@@ -199,7 +199,7 @@ const Usuarios = () => {
                   page="Usuário"
                   showButtons
                   showHeaderButton
-                  showEditButton
+                  showEditButton='usuarios'
                   showDeleteButton
                 />
               </TabPanel>

@@ -16,12 +16,12 @@ import SailingRoundedIcon from '@mui/icons-material/SailingRounded';
 const Navios = () => {
 
     const tableHeaders = [
-        {key: 'imo', label: 'imo', displayInTable: true },
-        {key: 'navio', label: 'navio', displayInTable: true },
-        {key: 'boca', label: 'boca', displayInTable: true }, 
-        {key: 'loa', label: 'loa', displayInTable: true }, 
-        {key: 'dwt', label: 'dwt', displayInTable: true }, 
-        {key: 'agencia', label: 'agência', displayInTable: true }, 
+        {key: 'imo', label: 'imo', displayInTable: true, addModal: true, editModal: true, editable: true },
+        {key: 'navio', label: 'navio', displayInTable: true, addModal: true, editModal: true, editable: true  },
+        {key: 'boca', label: 'boca', displayInTable: true, addModal: true, editModal: true, editable: true  }, 
+        {key: 'loa', label: 'loa', displayInTable: true, addModal: true, editModal: true, editable: true  }, 
+        {key: 'dwt', label: 'dwt', displayInTable: true, addModal: true, editModal: true, editable: true  }, 
+        {key: 'agencia', label: 'agência', displayInTable: true, addModal: true, editModal: true, editable: true  }, 
     ]
 
     const data = [
@@ -30,8 +30,6 @@ const Navios = () => {
         { imo: 9538790, navio: 'MV Atlantic Breeze', boca: 999, loa: 999, dwt: 52000, agencia: 'Marítima Global' },
         { imo: 9603102, navio: 'MV Sunrise Glory', boca: 999, loa: 999, dwt: 48000, agencia: 'Agencia Portuária Norte' },
     ];
-
-    const filterOptions = [99, 100, 101, 102];
 
     return (
         <Box p={4} id='page-container'>
@@ -48,14 +46,7 @@ const Navios = () => {
                                 _hover={{
                                     shadow: "none",
                                 }}
-                            >Ativos</Tab>
-                            <Tab 
-                                borderRadius="0" 
-                                shadow="none"
-                                _hover={{
-                                    shadow: "none",
-                                }}
-                            >Inativos</Tab>
+                            >Navios</Tab>
                         </TabList>
                     </Stack>
                     <TabPanels>
@@ -63,10 +54,11 @@ const Navios = () => {
                             <GenericTable
                                 headers={tableHeaders}
                                 data={data}
-                                filterOptions={filterOptions}
-                                filterKey='berco'
-                                filterText='Berço'
-                                showButtons={false}
+                                page='Navio'
+                                showButtons={true}
+                                showHeaderButton
+                                showEditButton
+                                showDeleteButton
                             />
                         </TabPanel>
                         <TabPanel p={0} height='100%'>

@@ -249,6 +249,7 @@ const GenericTable = ({ page, headers, data: initialData, filterOptions, filterK
                 right="5rem"
                 shadow="none"
                 onClick={ showHeaderButton==='lineup' ? onViewOpen : onAddOpen}
+                mr={10}
             >
                 Registrar {page} +
             </Button>}
@@ -365,6 +366,7 @@ const GenericTable = ({ page, headers, data: initialData, filterOptions, filterK
                 setEditingRow={setEditingRow}
                 handleEditRow={handleEditRow}
                 isEditValid={isEditValid}
+                source={showEditButton}
             />
 
             <DeleteConfirmationModal

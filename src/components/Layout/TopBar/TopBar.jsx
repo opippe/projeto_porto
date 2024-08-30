@@ -9,6 +9,7 @@ import {
   MenuDivider,
 } from "@chakra-ui/react";
 import TopBarButton from "./TopBarButton";
+import NotificationsIcon from '@mui/icons-material/Notifications';
 
 const TopBar = (props) => {
   return (
@@ -29,6 +30,7 @@ const TopBar = (props) => {
           variant={"link"}
           cursor={"pointer"}
           minW={0}
+          ml={3}
         >
           <Avatar
             size={"sm"}
@@ -37,6 +39,7 @@ const TopBar = (props) => {
             }
           />
         </MenuButton>
+        <NotificationsIcon sx={{ fontSize: '1.75rem' }} />
         <MenuList>
           <MenuItem>Link 1</MenuItem>
           <MenuItem>Link 2</MenuItem>

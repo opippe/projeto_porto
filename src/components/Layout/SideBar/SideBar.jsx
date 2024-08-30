@@ -131,7 +131,6 @@ function SideBar(props) {
                 props.setSelectedPage("Navios");
                 selected(6);
               }}
-              style={{ opacity: '.5', pointerEvents: 'none' }} //TEMPORARIAMENTE DESABILITADO
             >
               <SideBarButton
                 text="Navios"
@@ -147,7 +146,6 @@ function SideBar(props) {
                 props.setSelectedPage("Berços");
                 selected(3);
               }}
-              style={{ opacity: '.5', pointerEvents: 'none' }} //TEMPORARIAMENTE DESABILITADO
             >
               <SideBarButton
                 text="Berços"
